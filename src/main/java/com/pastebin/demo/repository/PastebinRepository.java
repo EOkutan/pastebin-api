@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface PastebinRepository extends CrudRepository<PastebinEntity, Long> {
 
     PastebinEntity findByHash(String hash);
+
+    PastebinEntity findByDescription(String description);
 }
