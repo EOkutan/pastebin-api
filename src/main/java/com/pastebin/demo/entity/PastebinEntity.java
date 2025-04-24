@@ -27,6 +27,9 @@ public class PastebinEntity {
     @Column(name = "expireDate")
     private Timestamp expireDate;
 
+    @ManyToOne
+    private UserEntity userEntity;
+
     public Long getId() {
         return id;
     }
@@ -73,5 +76,13 @@ public class PastebinEntity {
 
     public void setExpireDate(Timestamp expireDate) {
         this.expireDate = expireDate;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 }

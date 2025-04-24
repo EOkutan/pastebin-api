@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -83,6 +84,9 @@ public class UserEntity implements UserDetails {
     @Column(name = "updated_at")
     private Date updatedAt;
 
+    @OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY)
+    private List<PastebinEntity> pastebinEntities = new ArrayList<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
@@ -115,6 +119,14 @@ public class UserEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public List<PastebinEntity> getPastebinEntities() {
+        return pastebinEntities;
+    }
+
+    public void setPastebinEntities(List<PastebinEntity> pastebinEntities) {
+        this.pastebinEntities = pastebinEntities;
     }
 
     // Getters and setters
